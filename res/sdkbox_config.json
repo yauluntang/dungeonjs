@@ -1,0 +1,86 @@
+{
+    "android": {
+        "GoogleAnalytics": {
+            "trackingCode": "UA-17485141-7"
+        },
+        "SdkboxAds": {
+            "units": [
+                "AdMob"
+            ],
+            "placements": [
+                {
+                    "units": [
+                        {
+                            "unit": "AdMob",
+                            "name": "Banner",
+                            "weight": 100
+                        }
+                    ],
+                    "id": "banners",
+                    "strategy": "round-robin"
+                }
+            ]
+        },
+        "AdMob": {
+            "cache": {
+                "gameover": true,
+                "home": true
+            },
+            "ads": {
+                "gameover": {
+                    "type": "interstitial",
+                    "id": "ca-app-pub-6830716067076567/5113579085"
+                },
+                "home": {
+                    "width": 300,
+                    "type": "banner",
+                    "id": "ca-app-pub-6830716067076567/3297525417",
+                    "alignment": "bottom",
+                    "height": 100
+                }
+            }
+        }
+    },
+    "ios": {
+
+        "SdkboxAds": {
+
+            "units": [
+                "AdMob"
+            ],
+            "placements": [
+                {
+                    "units": [
+                        {
+                            "unit": "AdMob",
+                            "name": "Banner",
+                            "weight": 100
+                        }
+                    ],
+                    "id": "banners",
+                    "strategy": "round-robin"
+                }
+            ]
+        },
+        "AdMob": {
+            "cache": {
+                "gameover": true,
+                "home": true
+            },
+            "safearea": true,
+            "ads": {
+                "gameover": {
+                    "type": "interstitial",
+                    "id": "ca-app-pub-6830716067076567/7501977857"
+                },
+                "home": {
+                    "width": 320,
+                    "type": "banner",
+                    "id" : "ca-app-pub-6830716067076567/5725861757",
+                    "alignment": "bottom",
+                    "height": 50
+                }
+            }
+        }
+    }
+}
