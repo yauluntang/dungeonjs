@@ -50,6 +50,12 @@
 #include "scripting/js-bindings/manual/spine/jsb_cocos2dx_spine_manual.h"
 #include "scripting/js-bindings/manual/ui/jsb_cocos2dx_ui_manual.h"
 
+
+#include "PluginSdkboxAdsJS.hpp"
+#include "PluginSdkboxAdsJSHelper.h"
+#include "PluginAdMobJS.hpp"
+#include "PluginAdMobJSHelper.h"
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "scripting/js-bindings/auto/jsb_cocos2dx_experimental_video_auto.hpp"
 #include "scripting/js-bindings/auto/jsb_cocos2dx_experimental_webView_auto.hpp"
@@ -112,12 +118,14 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto glview = director->getOpenGLView();
     if(!glview) {
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-        glview = cocos2d::GLViewImpl::create("dungeonjs");
+        glview = cocos2d::GLViewImpl::create("ReflezJS");
 #else
-        glview = cocos2d::GLViewImpl::createWithRect("dungeonjs", Rect(0,0,960,640));
+        glview = cocos2d::GLViewImpl::createWithRect("ReflezJS", Rect(0,0,960,640));
 #endif
         director->setOpenGLView(glview);
 }
+
+
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
@@ -126,6 +134,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     sc->addRegisterCallback(register_all_cocos2dx);
     sc->addRegisterCallback(register_cocos2dx_js_core);
     sc->addRegisterCallback(jsb_register_system);
+    
+    
+    sc->addRegisterCallback(register_all_PluginSdkboxAdsJS);
+    sc->addRegisterCallback(register_all_PluginSdkboxAdsJS_helper);
+    sc->addRegisterCallback(register_all_PluginAdMobJS);
+    sc->addRegisterCallback(register_all_PluginAdMobJS_helper);
 
     // extension can be commented out to reduce the package
     sc->addRegisterCallback(register_all_cocos2dx_extension);

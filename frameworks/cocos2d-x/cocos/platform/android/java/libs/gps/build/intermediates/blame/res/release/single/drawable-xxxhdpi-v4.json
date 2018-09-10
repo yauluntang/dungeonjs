@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/yauluntang/currymouse/reflezjs/frameworks/cocos2d-x/cocos/platform/android/java/libs/gps/build/intermediates/res/merged/release/drawable-xxxhdpi-v4/powered_by_google_dark.png",
+        "source": "/Users/yauluntang/currymouse/reflezjs/frameworks/cocos2d-x/cocos/platform/android/java/libs/gps/res/drawable-xxxhdpi/powered_by_google_dark.png"
+    },
+    {
+        "merged": "/Users/yauluntang/currymouse/reflezjs/frameworks/cocos2d-x/cocos/platform/android/java/libs/gps/build/intermediates/res/merged/release/drawable-xxxhdpi-v4/powered_by_google_light.png",
+        "source": "/Users/yauluntang/currymouse/reflezjs/frameworks/cocos2d-x/cocos/platform/android/java/libs/gps/res/drawable-xxxhdpi/powered_by_google_light.png"
+    }
+]

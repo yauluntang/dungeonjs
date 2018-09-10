@@ -12,8 +12,13 @@ var MazeLayer = cc.Layer.extend({
         this.animated = new AnimatedSprite();
         this.animated.setPosition(size.width/2, size.height/2);
         this.addChild(this.animated);
+                                this.animated.setScale(1.5);
 
 
+        this.sprite = new cc.Sprite(res.mushroom_png);
+
+        this.sprite.setPosition( size.width/2, size.height/2 - 200);
+        this.addChild( this.sprite);
         return true;
     },
 

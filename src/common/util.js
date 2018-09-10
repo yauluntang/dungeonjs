@@ -94,13 +94,17 @@ Util.spriteFrames = function( file, cell_width, cell_height, width, height ){
     texture.setAliasTexParameters();
 
 
+    var index = 0;
 
     for ( var i = 0; i < y; i ++ ){
         for ( var j = 0; j < x; j ++ ){
 
+
             var rect = cc.rect(j * cell_width, i * cell_height, cell_width, cell_height );
             var spriteframe = new cc.SpriteFrame( texture, rect );
+            cc.spriteFrameCache.addSpriteFrame(spriteframe, file+'_'+index);
             list.push( spriteframe );
+            index ++;
         }
     }
 
@@ -123,8 +127,14 @@ Util.arrayFromCount = function( fromNum, count ){
     }
     return list;
 }
-
-Util.repeatAnimation = function( spriteFrames, frames, delay, repeat ) {
+Util.spriteList = function( file, indexArray ){
+  var list = [];
+  for ( var i of indexArray){
+    list.push( cc.spriteFrameCache.getSpriteFrame(file+'_'+i) );
+  }
+  return list;
+}
+Util.repeatAnimation = function( spriteFrames, delay, repeat ) {
 
     if ( !repeat ){
         repeat = false;
@@ -132,23 +142,16 @@ Util.repeatAnimation = function( spriteFrames, frames, delay, repeat ) {
     else {
         repeat = true;
     }
-    var sframes = [];
 
-    for ( var i = 0; i < frames.length; i ++ ){
-        var spriteframe = spriteFrames[frames[i]];
-        sframes.push(spriteframe);
-    }
-
-
-    var animation1 = new cc.Animation(sframes, delay, 1);
+    var animation1 = new cc.Animation(spriteFrames, delay, 1);
     var action = cc.Animate.create(animation1);
     //var repeat = cc.RepeatForever.create(action);
     if ( repeat ){
         var repeat = cc.RepeatForever.create(action);
-        return {repeat:repeat, sframes: sframes};
+        return {repeat:repeat, sframes: spriteFrames};
     }
     else {
-        return {repeat:action, sframes: sframes};
+        return {repeat:action, sframes: spriteFrames};
     }
 
 }

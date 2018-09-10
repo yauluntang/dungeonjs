@@ -23,7 +23,12 @@ var AnimatedSprite = cc.Node.extend({
 
         var rects = Util.spriteFrames(part, 64, 64, 832, 1344);
 
-        cc.spriteFrameCache.addSpriteFrame( rects, part );
+
+        //rects.retain();
+
+        this.spriteFramesMap[ part ] = rects;
+
+        //cc.spriteFrameCache.addSpriteFrame( rects, part );
 
         if ( color ){
             sprite.setColor(color);
@@ -38,6 +43,7 @@ var AnimatedSprite = cc.Node.extend({
         this._super();
 
 
+        this.spriteFramesMap = {};
         this.spriteList = [];
 
         this.scheduleUpdate();
@@ -54,6 +60,18 @@ var AnimatedSprite = cc.Node.extend({
         var that = this;
         setTimeout( function(){
             that.runAnimation('cast', 2);
+        }, 2000);
+
+        setTimeout( function(){
+            that.runAnimation('walk', 0);
+        }, 3000);
+
+        setTimeout( function(){
+            that.runAnimation('walk', 1);
+        }, 4000);
+
+        setTimeout( function(){
+            that.runAnimation('walk', 2);
         }, 5000);
 
         return true;
@@ -72,8 +90,11 @@ var AnimatedSprite = cc.Node.extend({
 
         for ( var i = 0; i < this.spriteList.length; i++ ){
 
+
             var spriteObject = this.spriteList[i];
-            var animateObj = Util.repeatAnimation( cc.spriteFrameCache.getSpriteFrame(spriteObject.spriteFrameName), newrect, 0.1, true);
+
+            var spriteList = Util.spriteList( spriteObject.spriteFrameName, newrect );
+            var animateObj = Util.repeatAnimation( spriteList, 0.1, true);
 
             spriteObject.sprite.stopAllActions();
             spriteObject.sprite.runAction( animateObj.repeat );
