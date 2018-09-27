@@ -1,23 +1,29 @@
 var CurryButton = cc.Node.extend({
 
     touchDownCallback: function(e){
-
+        if ( typeof this.downCallback === 'function' ){
+          this.downCallback.call( this.callbackParent, e);
+        }
 
     },
     touchUpCallback: function(e){
-
-        this.callback(e);
+        if ( typeof this.upCallback === 'function' ){
+          this.upCallback.call( this.callbackParent, e);
+        }
     },
-    ctor: function (normalSprite, activeSprite, callback) {
+    ctor: function (normalSprite, activeSprite, upCallback, downCallback, callbackParent ) {
         this._super();
 
         this.normalSprite = normalSprite;
         this.activeSprite = activeSprite;
 
+        this.callbackParent = callbackParent;
+
         this.activeSprite.setVisible(false);
         this.addChild(normalSprite);
         this.addChild(activeSprite);
-        this.callback = callback;
+        this.upCallback = upCallback;
+        this.downCallback = downCallback;
         this.touched = false;
 
 
@@ -55,7 +61,7 @@ var CurryButton = cc.Node.extend({
 
 
 
-            if ( this.touched && cc.rectContainsPoint( normalSprite.getBoundingBox() , locationInNode)) {
+            if ( this.touched ) {
                 this.touched = false;
                 if ( this.touchUpCallback) {
                     this.touchUpCallback(touch, event, this);

@@ -52,10 +52,15 @@ var res = {
 
     "nudeguy_png": "res/nudeguy.png",
     "mail_male_png": "res/mail_male.png",
-    "mustache_png": "res/mustache.png"
+    "mustache_png": "res/mustache.png",
+
+    dirt_texture_png: 'res/tiles/dirt.png',
+    dirt2_texture_png: 'res/tiles/dirt2.png',
+    grass_texture_png: 'res/tiles/grass.png',
+    water_texture_png: 'res/tiles/water.png'
 };
 
 var g_resources = [{name:"Josefin Sans", srcs:["res/JosefinSans-Regular.eot","res/JosefinSans-Regular.ttf"], type:"font"}];
 for (var i in res) {
-    //g_resources.push(res[i]);
+    g_resources.push(res[i]);
 }

@@ -8,6 +8,9 @@ Util.hexToColor = function(hex, alpha){
         cc.color(parseInt(result[1], 16),parseInt(result[2], 16),parseInt(result[3], 16), alpha != null ? alpha: 255 )
      : null;
 }
+Util.randomColor = function(){
+    return cc.color(Util.randomInt(0,255), Util.randomInt(0,255), Util.randomInt(0,255), 255);
+}
 Util.randomCircle = function( radius, dx, dy ){
   var angle = Math.random() * 2 * Math.PI;
     var dis = Math.random() * radius;
@@ -78,7 +81,7 @@ Util.getFrames = function( cell_width, cell_height, width, height ){
 
     for ( var i = 0; i < y; i ++ ){
         for ( var j = 0; j < x; j ++ ){
-            list.push( cc.rect(j * cell_width, i * cell_height, cell_width, cell_height ) );
+            list.push( cc.rect(j * cell_width+1, i * cell_height+1, cell_width-2, cell_height-2 ) );
 
         }
     }
@@ -100,7 +103,7 @@ Util.spriteFrames = function( file, cell_width, cell_height, width, height ){
         for ( var j = 0; j < x; j ++ ){
 
 
-            var rect = cc.rect(j * cell_width, i * cell_height, cell_width, cell_height );
+            var rect = cc.rect(j * cell_width + 1, i * cell_height + 1, cell_width - 1, cell_height - 1 );
             var spriteframe = new cc.SpriteFrame( texture, rect );
             cc.spriteFrameCache.addSpriteFrame(spriteframe, file+'_'+index);
             list.push( spriteframe );
@@ -127,6 +130,15 @@ Util.arrayFromCount = function( fromNum, count ){
     }
     return list;
 }
+
+Util.arrayFromArray = function( array, shift ){
+  var list = [];
+  for ( var i = 0; i < array.length; i ++ ){
+      list.push(array[i]+ shift);
+  }
+  return list;
+}
+
 Util.spriteList = function( file, indexArray ){
   var list = [];
   for ( var i of indexArray){
@@ -155,8 +167,6 @@ Util.repeatAnimation = function( spriteFrames, delay, repeat ) {
     }
 
 }
-
-
 
 
 Util.getRepeatAnimation = function( file, frames, delay, repeat ) {

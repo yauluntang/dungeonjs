@@ -2,7 +2,7 @@
     "project_type": "javascript",
 
     "debugMode" : 1,
-    "showFPS" : false,
+    "showFPS" : true,
     "frameRate" : 60,
     "noCache" : false,
     "id" : "gameCanvas",
@@ -16,9 +16,12 @@
         "src/common/util.js",
         "src/common/button.js",
         "src/common/header.js",
+        "src/common/array.js",
+        "src/common/stringutil.js",
         "src/maze/app.js",
-        "src/maze/animated.js"
-
+        "src/maze/terrain.js",
+        "src/maze/animated.js",
+        "src/maze/arrowinput.js"
 
     ]
 }
